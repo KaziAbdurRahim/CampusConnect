@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 
-const App = () => {
+const TimetableApp = () => {
   const initialData = [
     ["", "", "", "", "", "", ""],
     ["", "", "", "", "", "", ""],
@@ -68,19 +67,18 @@ const App = () => {
                   {routine.data[rowIndex].map((cell, cellIndex) => (
                     <td
                       key={cellIndex}
-                      className={border border-gray-300 px-4 py-2 cursor-pointer ${cell === "selected" ? "bg-green-500 text-white" : ""}}
-                  onClick={() => toggleCell(routineIndex, rowIndex, cellIndex)}
+                      className={`border border-gray-300 px-4 py-2 cursor-pointer ${cell === "selected" ? "bg-green-500 text-white" : ""}`}
+                      onClick={() => toggleCell(routineIndex, rowIndex, cellIndex)}
                     >
-                  {cell || ""}
-                </td>
+                      {cell || ""}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-              ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
         </div>
-  ))
-}
+      ))}
 
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
@@ -96,41 +94,38 @@ const App = () => {
         Find Free Time
       </button>
 
-{
-  freeTime && (
-    <div className="mt-6 overflow-x-auto">
-      <h2 className="text-lg font-semibold">Common Free Time</h2>
-      <table className="border-collapse border border-gray-300 text-center">
-        <thead className="bg-gray-200">
-          <tr>
-            <th className="border border-gray-300 px-2 py-2">Time/Day</th>
-            {days.map((day, index) => (
-              <th key={index} className="border border-gray-300 px-4 py-2">{day}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {timeSlots.map((slot, rowIndex) => (
-            <tr key={rowIndex}>
-              <td className="border border-gray-300 px-2 py-2">{slot}</td>
-              {freeTime[rowIndex].map((cell, cellIndex) => (
-                <td
-                  key={cellIndex}
-                  className={border border-gray-300 px-4 py-2 ${cell === "free" ? "bg-green-500 text-white" : ""}}
+      {freeTime && (
+        <div className="mt-6 overflow-x-auto">
+          <h2 className="text-lg font-semibold">Common Free Time</h2>
+          <table className="border-collapse border border-gray-300 text-center">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="border border-gray-300 px-2 py-2">Time/Day</th>
+                {days.map((day, index) => (
+                  <th key={index} className="border border-gray-300 px-4 py-2">{day}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {timeSlots.map((slot, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td className="border border-gray-300 px-2 py-2">{slot}</td>
+                  {freeTime[rowIndex].map((cell, cellIndex) => (
+                    <td
+                      key={cellIndex}
+                      className={`border border-gray-300 px-4 py-2 ${cell === "free" ? "bg-green-500 text-white" : ""}`}
                     >
-              {cell || ""}
-            </td>
-          ))}
-        </tr>
+                      {cell || ""}
+                    </td>
+                  ))}
+                </tr>
               ))}
-      </tbody>
-    </table>
-        </div >
-      )
-}
-    </div >
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   );
 };
 
-
-export default App
+export default TimetableApp;
