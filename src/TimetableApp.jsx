@@ -131,7 +131,14 @@ const TimetableApp = () => {
           </div>
         )}
       </div>
+      <footer className="mt-8 text-center ">
+         <p className='font-semibold'> If you find this project helpful, please consider giving it a star on GitHub! Your support is greatly appreciated. </p> <a href=" https://github.com/KaziAbdurRahim/CampusConnect.git" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline" > ⭐️ Star this Project on GitHub </a> 
+      <p className="mt-4"> © 2025 Kazi Abdur Rahim. All rights reserved.This project is licensed under the MIT License. </p></footer>
+   
+  
+
     </div>
+    
   );
 };
 
