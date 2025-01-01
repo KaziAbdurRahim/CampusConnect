@@ -7,10 +7,11 @@ const TimetableApp = () => {
     ["", "", "", "", "", "", ""],
     ["", "", "", "", "", "", ""],
     ["", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", ""],
   ];
 
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const timeSlots = ["08:00 AM - 09:20 AM", "09:30 AM - 10:50 AM", "11:00 AM - 12:20 PM", "12:30 PM - 01:50 PM", "02:00 PM - 03:20 PM"];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const timeSlots = ["08:00-09:20", "09:30-10:50", "11:00-12:20", "12:30-01:50", "02:00-03:20","03:30-04:50"];
 
   const [routines, setRoutines] = useState([{ data: JSON.parse(JSON.stringify(initialData)) }]);
   const [freeTime, setFreeTime] = useState(null);
@@ -19,7 +20,7 @@ const TimetableApp = () => {
   const toggleCell = (routineIndex, rowIndex, cellIndex) => {
     const updatedRoutines = [...routines];
     const currentCell = updatedRoutines[routineIndex].data[rowIndex][cellIndex];
-    updatedRoutines[routineIndex].data[rowIndex][cellIndex] = currentCell ? "" : "selected";
+    updatedRoutines[routineIndex].data[rowIndex][cellIndex] = currentCell ? "" : "✅";
     setRoutines(updatedRoutines);
   };
 
@@ -36,7 +37,7 @@ const TimetableApp = () => {
       for (let col = 0; col < days.length; col++) {
         const isFree = routines.every(routine => !routine.data[row][col]);
         if (isFree) {
-          combinedFreeTime[row][col] = "free";
+          combinedFreeTime[row][col] = "🎉";
         }
       }
     }
@@ -45,38 +46,40 @@ const TimetableApp = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 mx-auto w-full max-w-4xl">
       <h1 className="text-2xl font-bold mb-4">Routine Scheduler</h1>
 
       {routines.map((routine, routineIndex) => (
-        <div key={routineIndex} className="mb-6 overflow-x-auto">
+        <div key={routineIndex} className="mb-6 container ">
           <h2 className="text-lg font-semibold">Routine {routineIndex + 1}</h2>
-          <table className="border-collapse border border-gray-300 text-center">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="border border-gray-300 px-2 py-2">Time/Day</th>
-                {days.map((day, index) => (
-                  <th key={index} className="border border-gray-300 px-4 py-2">{day}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {timeSlots.map((slot, rowIndex) => (
-                <tr key={rowIndex}>
-                  <td className="border border-gray-300 px-2 py-2">{slot}</td>
-                  {routine.data[rowIndex].map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className={`border border-gray-300 px-4 py-2 cursor-pointer ${cell === "selected" ? "bg-green-500 text-white" : ""}`}
-                      onClick={() => toggleCell(routineIndex, rowIndex, cellIndex)}
-                    >
-                      {cell || ""}
-                    </td>
+          <div className="">
+            <table className="border-collapse border border-gray-300 text-center w-full">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="border border-gray-300 px-2 py-2">T/D</th>
+                  {days.map((day, index) => (
+                    <th key={index} className="border border-gray-300 ">{day}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {timeSlots.map((slot, rowIndex) => (
+                  <tr key={rowIndex}>
+                    <td className="border border-gray-300 ">{slot}</td>
+                    {routine.data[rowIndex].map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className={`border border-gray-300  cursor-pointer ${cell === "✅" ? " text-white" : ""}`}
+                        onClick={() => toggleCell(routineIndex, rowIndex, cellIndex)}
+                      >
+                        {cell || ""}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ))}
 
@@ -94,36 +97,40 @@ const TimetableApp = () => {
         Find Free Time
       </button>
 
-      {freeTime && (
-        <div className="mt-6 overflow-x-auto">
-          <h2 className="text-lg font-semibold">Common Free Time</h2>
-          <table className="border-collapse border border-gray-300 text-center">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="border border-gray-300 px-2 py-2">Time/Day</th>
-                {days.map((day, index) => (
-                  <th key={index} className="border border-gray-300 px-4 py-2">{day}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {timeSlots.map((slot, rowIndex) => (
-                <tr key={rowIndex}>
-                  <td className="border border-gray-300 px-2 py-2">{slot}</td>
-                  {freeTime[rowIndex].map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className={`border border-gray-300 px-4 py-2 ${cell === "free" ? "bg-green-500 text-white" : ""}`}
-                    >
-                      {cell || ""}
-                    </td>
+      <div className='container '>
+        {freeTime && (
+          <div className="mt-6">
+            <h2 className="text-lg font-semibold">Common Free Time</h2>
+            <div className="">
+              <table className="border-collapse border border-gray-300 text-center w-full">
+                <thead className="bg-gray-200">
+                  <tr>
+                    <th className="border border-gray-300 ">T/D</th>
+                    {days.map((day, index) => (
+                      <th key={index} className="border border-gray-300 ">{day}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {timeSlots.map((slot, rowIndex) => (
+                    <tr key={rowIndex}>
+                      <td className="border border-gray-300 ">{slot}</td>
+                      {freeTime[rowIndex].map((cell, cellIndex) => (
+                        <td
+                          key={cellIndex}
+                          className={`border border-gray-300 ${cell === "🎉" ? " text-white" : ""}`}
+                        >
+                          {cell || ""}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
