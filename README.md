@@ -2,7 +2,7 @@
 
 Routine Scheduler is a web application designed to help BRACU students find common free time among multiple routines. Users can input their routines, and the app will filter and display the common free time slots.
 
-In the future I am thinking about making a sign in system where one persion can create an account and uplod their routine, then send a friend request to his/her friend, when acpetd he acan see their mutual free time. this will mitigate the hassle of entering all routine every tiem.
+In the future, I plan to implement a sign-in system for the Routine Scheduler app. This system will allow users to create accounts and upload their routines. Users can then send friend requests to their peers. Once a friend request is accepted, both users will be able to view their mutual free time. This feature will significantly reduce the hassle of entering routines every time and make scheduling even more convenient.
 
 ## Features 
 
