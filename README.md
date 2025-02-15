@@ -38,7 +38,7 @@ In the future, I plan to implement a sign-in system for the Routine Scheduler ap
 ## Usage
 
 1. Open the app in your browser.
-  web link: https://app.netlify.com/teams/kaziabdurrahim/sites
+  web link: https://campussconnect.netlify.app/
 2. Add routines by clicking the "Add Routine" button.
 3. Toggle cell selection to mark busy times.
 4. Click the "Find Free Time" button to display common free time slots.

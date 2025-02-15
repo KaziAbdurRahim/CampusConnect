@@ -47,7 +47,7 @@ const TimetableApp = () => {
 
   return (
     <div className="p-4 mx-auto w-full max-w-4xl">
-      <h1 className="text-2xl font-bold mb-4">Routine Scheduler</h1>
+      <h1 className="text-2xl text-center font-bold mb-4">Routine Scheduler</h1>
 
       {routines.map((routine, routineIndex) => (
         <div key={routineIndex} className="mb-6 container ">
@@ -131,9 +131,9 @@ const TimetableApp = () => {
           </div>
         )}
       </div>
-      <footer className="mt-8 text-center ">
+      <footer className="mt-8 text-center bg-base-200 rounded-lg">
          <p className='font-semibold'> If you find this project helpful, please consider giving it a star on GitHub! Your support is greatly appreciated. </p> <a href=" https://github.com/KaziAbdurRahim/CampusConnect.git" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline" > ⭐️ Star this Project on GitHub </a> 
-      <p className="mt-4"> © 2025 Kazi Abdur Rahim. All rights reserved.This project is licensed under the MIT License. </p></footer>
+      <p className="mt-4"> © 2025 All rights reserved. </p></footer>
    
   
 
